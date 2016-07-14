@@ -1,6 +1,6 @@
-/*
+/*****************************************************************************
  * User Model which contains email and username
- */
+ ****************************************************************************/
 var User = function() {
   this._email = null;
   this._username = null;
@@ -19,9 +19,9 @@ User.prototype.setUsername = function(username) {
   this._username = username;
 };
 
-/*
+/*****************************************************************************
  * UserRepo Model which contains an object that consist of user instance
- */
+ ****************************************************************************/
 var UserRepo = function() {
   this._user = {};
 }
@@ -52,9 +52,9 @@ UserRepo.prototype.addUser = function(email, generator) {
   this._user[username] = newUser;
 }
 
-/*
+/*****************************************************************************
  * UserNameGenerator Model
- */
+ ****************************************************************************/
 var UserNameGenerator = function() {};
 
 /*
@@ -81,7 +81,3 @@ UserNameGenerator.prototype.generate = function(email, userRepo) {
   }
   return username;
 }
-
-// initialize Models(classes)
-var userRepo = new UserRepo();
-var userNameGenerator = new UserNameGenerator();

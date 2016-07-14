@@ -57,5 +57,32 @@ describe('Plain JavaScript', function() {
 
   describe('UserNameGenerator Class', function() {
 
+    it('should have generate method', function() {
+      expect(userNameGenerator).to.have.property('generate');
+      expect(userNameGenerator.generate).to.be.a('function');
+    })
+    describe('generate method', function() {
+      it('should throw error if first parameter is not valid email', function() {
+        var func = function() {
+          userNameGenerator.generate('test@tet', userRepo)
+        };
+        expect(func).to.throw('Wrong arguments');
+      });
+      it('should throw error if second parameter is not instance of UserRepo', function() {
+        var func = function() {
+          userNameGenerator.generate('test@tet.com', newUser)
+        };
+        expect(func).to.throw('Wrong arguments');
+      });
+      it('should return username extracted from given email', function() {
+        var username = userNameGenerator.generate('test@test.com', userRepo);
+        expect(username).to.equal('test');
+      });
+      it('should add random character to username if initially extracted username already exists', function() {
+        userRepo.addUser('test@test.com', userNameGenerator);
+        var username = userNameGenerator.generate('test@test.com', userRepo);
+        expect(username).to.not.equal('test');
+      })
+    });
   });
 });
