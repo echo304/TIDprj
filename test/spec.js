@@ -1,7 +1,61 @@
 var expect = chai.expect;
 
-describe('Test', function() {
-  it('should pass', function() {
-    expect(true).to.equal(true);
+describe('Plain JavaScript', function() {
+  var newUser;
+  var userRepo;
+  var userNameGenerator;
+
+  beforeEach(function() {
+    newUser = new User();
+    userRepo = new UserRepo();
+    userNameGenerator = new UserNameGenerator();
+  });
+
+  describe('User Class', function() {
+
+    it('should store email properly', function() {
+      newUser.setEmail('test@test.com');
+      expect(newUser.getEmail()).to.equal('test@test.com');
+    });
+    it('should store username properly', function() {
+      newUser.setUsername('test');
+      expect(newUser.getUsername()).to.equal('test');
+    });
+  });
+
+  describe('UserRepo Class', function() {
+
+    it('should have findByUserName method, addUser method', function() {
+      expect(userRepo).to.have.property('findByUserName');
+      expect(userRepo.findByUserName).to.be.a('function');
+      expect(userRepo).to.have.property('addUser');
+      expect(userRepo.addUser).to.be.a('function');
+    });
+
+    describe('findByUserName method', function() {
+      it('should return an instance of User class if it exists', function() {
+        userRepo.addUser('test@test.com', userNameGenerator);
+        expect(userRepo.findByUserName('test')).to.be.an.instanceof(User);
+      });
+      it('should return null if it doesn\'t exist', function() {
+        expect(userRepo.findByUserName('whatever')).to.equal(null);
+      });
+    });
+
+    describe('addUser method', function() {
+      it('should add user to userRepo instance', function() {
+        userRepo.addUser('test1@test.com', userNameGenerator);
+        var keys = [];
+        for(var key in userRepo._user) {
+          keys.push(key);
+        }
+        expect(keys.length).to.equal(1);
+        expect(keys[0]).to.equal('test1');
+      });
+    });
+  });
+
+  describe('UserNameGenerator Class', function() {
+
   });
 });

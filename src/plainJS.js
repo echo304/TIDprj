@@ -85,9 +85,3 @@ UserNameGenerator.prototype.generate = function(email, userRepo) {
 // initialize Models(classes)
 var userRepo = new UserRepo();
 var userNameGenerator = new UserNameGenerator();
-
-
-userRepo.addUser('test@test.tes', userNameGenerator);
-userRepo.findByUserName('test');
-userRepo.addUser('test1@test.com', userNameGenerator);
-userRepo.findByUserName('test');
