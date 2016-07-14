@@ -1,5 +1,9 @@
 // @flow
 
+interface UserRepo {
+
+}
+
 class User {
   email: string;
   username: string;
