@@ -50,6 +50,7 @@ UserRepo.prototype.addUser = function(email, generator) {
   console.log('Email : ' + email);
   console.log('Username : ' + username);
   this._user[username] = newUser;
+  return username;
 }
 
 /*****************************************************************************

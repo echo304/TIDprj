@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plain JS</title>
+</head>
+<body>
+  Username
+  <div id="user">
+  </div>
+  <input type="text" id="input">
+  <button id="btn">Add</button>
+  <script src="./dist/JSwithFlow-compiled.js"></script>
+  <script>
+    var userRepo = new UserRepo();
+    var userNameGenerator = new UserNameGenerator();
+
+    var user = document.getElementById('user');
+    var button = document.getElementById('btn');
+    var input = document.getElementById('input')
+    button.addEventListener('click', function() {
+      try {
+        var username = userRepo.addUser(input.value, userNameGenerator);
+        user.innerHTML = user.innerHTML + username + '</br>';
+      } catch (e) {
+        window.alert(e);
+      }
+      input.value = '';
+    });
+  </script>
+</body>
+</html>

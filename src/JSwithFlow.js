@@ -28,6 +28,7 @@ class UserRepo extends IUserRepository {
     console.log('Email : ' + email);
     console.log('Username : ' + username);
     this._users[username] = newUser;
+    return username;
   }
 }
 
@@ -62,7 +63,7 @@ class User {
  * UserNameGenerator Model
  ****************************************************************************/
 class UserNameGenerator {
-  generate(email: string, userRepo: IUserRepository) {
+  generate(email: string, userRepo: IUserRepository): string {
     // Regex for email validation
     var emailReg = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/ig;
 

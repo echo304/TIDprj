@@ -77,6 +77,7 @@ var UserRepo = function (_IUserRepository) {
       console.log('Email : ' + email);
       console.log('Username : ' + username);
       this._users[username] = newUser;
+      return username;
     }
   }]);
 
@@ -167,6 +168,14 @@ var UserNameGenerator = function () {
   _createClass(UserNameGenerator, [{
     key: 'generate',
     value: function generate(email, userRepo) {
+      function _ref6(_id6) {
+        if (!(typeof _id6 === 'string')) {
+          throw new TypeError('Function return value violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(_id6));
+        }
+
+        return _id6;
+      }
+
       if (!(typeof email === 'string')) {
         throw new TypeError('Value of argument "email" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(email));
       }
@@ -190,7 +199,7 @@ var UserNameGenerator = function () {
       while (userRepo.findByUserName(username) !== null) {
         username = username + username[Math.floor(Math.random() * username.length)];
       }
-      return username;
+      return _ref6(username);
     }
   }]);
 
